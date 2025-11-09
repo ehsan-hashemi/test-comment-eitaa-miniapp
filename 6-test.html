@@ -1,0 +1,1434 @@
+<html lang="fa" dir="ltr" style="--tg-viewport-height: 100vh; --tg-viewport-stable-height: 100vh; --tg-theme-accent-text-color: ##1c93e3; --tg-color-scheme: light; --tg-theme-bg-color: ##ffffff; --tg-theme-bottom-bar-bg-color: ##f0f0f0; --tg-theme-button-color: ##50a8eb; --tg-theme-button-text-color: ##ffffff; --tg-theme-destructive-text-color: ##cc2929; --tg-theme-header-bg-color: ##e67429; --tg-theme-hint-color: ##a8a8a8; --tg-theme-link-color: ##2678b6; --tg-theme-secondary-bg-color: ##f0f0f0; --tg-theme-section-bg-color: ##ffffff; --tg-theme-section-header-text-color: ##e67429; --tg-theme-section-separator-color: ##d9d9d9; --tg-theme-subtitle-text-color: ##82868a; --tg-theme-text-color: ##222222;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="سیدعلی- sasm110313">
+    <meta name="copyright" content="سیدعلی- sasm110313">
+    <title>کامنت - چت</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        body {
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--chat-bg, #e8edf2);
+            background-image: url('https://cdn.imgurl.ir/uploads/y353904_Capture.png');
+            background-repeat: repeat;
+            background-size: 500px;
+            background-blend-mode: overlay;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            width: 100%;
+        }
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+        .phone-container {
+            width: 100%;
+            max-width: 100%;
+            height: 100vh;
+            max-height: 100vh;
+            background: var(--chat-bg, #e8edf2);
+            background-image: url('https://cdn.imgurl.ir/uploads/y353904_Capture.png');
+            background-repeat: repeat;
+            background-size: 500px;
+            background-blend-mode: overlay;
+            border-radius: 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: none;
+            padding: 0;
+            margin: 0;
+        }
+        .login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--tg-theme-bg-color, #f0f2f5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .login-screen.hidden {
+            display: none;
+        }
+        .login-card {
+            background: var(--tg-theme-secondary-bg-color, #ffffff);
+            border-radius: 16px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .login-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--tg-theme-text-color, #1c1e21);
+            margin-bottom: 10px;
+        }
+        .login-message {
+            font-size: 16px;
+            color: var(--tg-theme-hint-color, #8a8a8e);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .login-button {
+            background: var(--tg-theme-button-color, #0d82d4);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.2s;
+        }
+        .login-button:hover {
+            opacity: 0.9;
+        }
+        .login-button:active {
+            opacity: 0.8;
+        }
+        .status-bar {
+            height: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 12px;
+            position: relative;
+            z-index: 10;
+        }
+        .status-time {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+        }
+        .status-icons {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .cellular-icon, .battery-icon {
+            width: 20px;
+            height: 12px;
+        }
+        .back-button {
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            margin-top: 50px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .back-icon {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 50px;
+            flex: 1;
+        }
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #5EA7DE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .user-details h2 {
+            color: white;
+            font-size: 17px;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        .user-status {
+            color: #d2e9fb;
+            font-size: 14px;
+        }
+        .header-menu {
+            width: 24px;
+            height: 24px;
+            margin-top: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dots-icon {
+            width: 4px;
+            height: 16px;
+            fill: white;
+        }
+        .post-content-area {
+            display: none;
+        }
+        .post-iframe-container {
+            width: 100%;
+            border: none;
+            overflow: hidden;
+            position: relative;
+        }
+        .post-iframe-container iframe {
+            width: 100%;
+            frameborder: 0;
+            scrolling: no;
+            overflow: hidden;
+            border: none;
+            min-width: 320px;
+            display: block;
+            background: transparent;
+        }
+        .post-iframe-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .post-iframe-loader.hidden {
+            display: none;
+        }
+        .post-iframe-loader svg rect {
+            animation: none;
+        }
+        .post-iframe-loader svg path {
+            transform-origin: center;
+            animation: rotate 1s linear infinite;
+        }
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .post-pinned-message {
+            position: sticky;
+            top: 137px;
+            z-index: 8;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            background: transparent;
+            height: 67px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .post-pinned-message:hover {
+            opacity: 0.9;
+        }
+        .post-pinned-message:active {
+            opacity: 0.8;
+        }
+        .post-pinned-message svg {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: 67px;
+            margin: 0;
+            padding: 0;
+        }
+        iframe[id^="eitaa-post-"]:not(#eitaa-post-iframe) {
+            display: none !important;
+        }
+        .post-link-fallback {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+        .post-link-fallback.show {
+            display: block;
+        }
+        .post-link-fallback p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        .post-link-fallback a {
+            color: #2c77b0;
+            text-decoration: none;
+            font-size: 16px;
+            word-break: break-all;
+        }
+        .post-link-fallback a:hover {
+            text-decoration: underline;
+        }
+
+        /* === اضافه یا به‌روزرسانی شده === */
+        .avatar-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 4px; /* فاصله بین آواتار و حباب */
+            flex-shrink: 0;
+        }
+
+        .avatar-bubble {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #5EA7DE;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transform: translateY(8px);
+        }
+
+        .bubble-tail {
+            position: absolute;
+            bottom: 0;
+            width: 6px;
+            height: 51px;
+            z-index: 2;
+        }
+
+        .message-bubble.incoming .bubble-tail {
+            left: 44px;
+        }
+
+        /* فقط پیام‌های incoming که avatar-container ندارند، فاصله از چپ بگیرند */
+        .message-bubble.incoming:not(:has(.avatar-container)) {
+            margin-left: 44px; /* مقدار = عرض آواتار (40px) + فاصله (8px) */
+        }
+
+        .message-bubble.outgoing .avatar-container,
+        .message-bubble.outgoing .avatar-bubble {
+            display: none;
+        }
+
+        .messages-container {
+            position: absolute;
+            top: 65px;
+            bottom: 52px;
+            left: 0;
+            right: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0 5px;
+            background: var(--chat-bg, #e8edf2);
+            background-image: url('https://cdn.imgurl.ir/uploads/y353904_Capture.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-height: 600px), (max-width: 568px) {
+            .messages-container {
+                padding-bottom: 50px;
+            }
+        }
+
+        .messages-wrapper {
+            padding: 4px 5px 8px 5px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-spacing-6 { height: 1px; }
+        .message-spacing-8 { height: 0px; }
+        .message-spacing-2 { 
+            margin-top: -2px;
+            height: 0;
+        }
+
+        .date-divider {
+            display: flex;
+            justify-content: center;
+            margin: 12px 0 8px 0;
+        }
+
+        .date-badge-modern {
+            max-width: 500px;
+            background-color: rgba(0, 0, 0, 0.10) !important;
+            color: rgba(255, 255, 255, 0.87);
+            padding: 4px 8px;
+            border-radius: 24px !important;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 0 0 0 rgba(0,0,0,.2), 0 0 0 0 rgba(0,0,0,.14), 0 0 0 0 rgba(0,0,0,.12);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .message-bubble {
+            margin-bottom: 6px;
+            display: flex;
+            position: relative;
+            animation: fadeIn 0.2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-bubble.incoming {
+            justify-content: flex-start;
+        }
+
+        .message-bubble.outgoing {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            position: relative;
+            margin-left: 6px;
+            margin-right: 6px;
+        }
+
+        .message-bubble.incoming { margin-left: 0; }
+        .message-bubble.outgoing { margin-right: 0; }
+
+        .bubble-content {
+            background: #ffffff;
+            border-radius: 12px;
+            border-bottom-left-radius: 0;
+            max-width: 280px;
+            position: relative;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 5px 12px 8px 18px;
+            margin-left: 6px;
+            box-shadow: none;
+            border: none;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .message-bubble.outgoing .bubble-content {
+            background: #EFFEDD;
+            padding: 8px 18px 8px 8px;
+            margin-left: 0;
+            margin-right: 6px;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 0;
+            align-items: flex-end;
+        }
+
+        .message-bubble.incoming .bubble-content {
+            background: white;
+            align-items: flex-end;
+        }
+
+        .message-author-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #5EA7DE;
+            margin-bottom: 1px;
+            direction: ltr;
+            margin-right: 12px !important;
+            margin-left: -12px !important;
+            text-align: left !important;
+            width: 100% !important;
+        }
+
+        .message-bubble.outgoing .message-author-name {
+            display: none;
+        }
+
+        .message-text,
+        .message-text-multiline {
+            padding: 0;
+            font-size: 15px;
+            line-height: 20px;
+            color: #000000;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            margin-bottom: 0;
+        }
+
+        .message-text-wrapper {
+            display: inline-flex;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: flex-end;
+        }
+
+        .message-text-multiline-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 100%;
+        }
+
+        .message-text-multiline {
+            display: block;
+            margin-bottom: 4px;
+            width: 100%;
+            text-align: right;
+        }
+
+        .message-text {
+            display: inline;
+            text-align: right;
+        }
+
+        .message-link {
+            padding: 5px 10px 0 8px;
+            font-size: 16px;
+            line-height: 19px;
+            color: #2c77b0;
+            text-decoration: underline;
+            word-break: break-all;
+        }
+
+        .reply-preview {
+            padding: 6px 4px 4px 10px;
+            display: flex;
+            gap: 7px;
+        }
+
+        .reply-line {
+            width: 2px;
+            background: #4d92cb;
+            min-height: 34px;
+            flex-shrink: 0;
+        }
+
+        .reply-content {
+            display: flex;
+            gap: 10px;
+        }
+
+        .reply-thumbnail {
+            width: 34px;
+            height: 34px;
+            border-radius: 3px;
+            background: #ddd;
+            flex-shrink: 0;
+        }
+
+        .reply-text-title {
+            color: #2678b4;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .reply-text-subtitle {
+            color: black;
+            font-size: 14px;
+        }
+
+        .message-photo {
+            width: 200px;
+            height: 150px;
+            border-radius: 5px;
+            background: #000;
+            margin: 0 4px 4px 10px;
+        }
+
+        .message-meta {
+            padding: 0;
+            margin-top: 0;
+            display: inline-flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: 6px;
+            vertical-align: baseline;
+            margin-left: 6px;
+            flex-shrink: 0;
+        }
+
+        .message-meta-inline {
+            display: inline-flex;
+            margin-left: 3px;
+            flex-shrink: 0;
+        }
+
+        .message-bubble.outgoing .message-meta-inline {
+            margin-top: -2px;
+            margin-left: -7px;
+        }
+
+        .message-meta-block {
+            display: flex;
+            margin-top: -5px;
+            margin-left: 0;
+            margin-right: 0;
+            align-items: flex-end;
+            width: 100%;
+            justify-content: flex-end;
+            padding-right: 0;
+            flex-shrink: 0;
+        }
+
+        .message-time {
+            font-size: 11px;
+            line-height: 14px;
+            color: #A1AAB3;
+        }
+
+        .message-bubble.outgoing .message-time {
+            color: #62ac55;
+            margin-right: -14px !important;
+            margin-left: 12px !important;
+            transform: translateY(4px);
+        }
+
+        .message-bubble.message-bubble.incoming .message-time {
+            margin-right: -5px !important;
+            margin-left: 5px !important;
+            transform: translateY(4px);
+        }
+
+        .edited-label {
+            font-size: 12px;
+            line-height: 14px;
+            color: #a1aab3;
+        }
+
+        .message-bubble.outgoing .edited-label {
+            color: #62ac55;
+        }
+
+        .read-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-right: -12px !important;
+            margin-left: 12px !important;
+            transform: translateY(8px);
+        }
+
+        .read-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .input-panel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            min-height: 52px;
+            max-height: 122px;
+            background: white;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 0;
+            z-index: 10;
+        }
+
+        .input-field {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0 18px;
+            font-size: 15px;
+            line-height: 20px;
+            background: transparent;
+            font-family: 'Vazirmatn', inherit;
+            color: #000;
+            resize: none;
+            min-height: 50px;
+            max-height: 120px;
+            margin: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            direction: rtl;
+            text-align: right;
+        }
+
+        textarea.input-field {
+            display: block;
+            padding: 15px 18px;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .input-field::-webkit-scrollbar {
+            display: none;
+        }
+
+        .input-field {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .input-field::placeholder {
+            color: #8E959B;
+            opacity: 1;
+        }
+
+        .input-field:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        .input-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .action-button {
+            width: 27px;
+            height: 27px;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: opacity 0.2s;
+            padding: 0;
+        }
+
+        .action-button:hover {
+            opacity: 0.8;
+        }
+
+        .action-button:active svg path,
+        .action-button:active svg {
+            fill: #5EA7DE;
+            stroke: #5EA7DE;
+        }
+
+        .action-button svg {
+            width: 27px;
+            height: 27px;
+            display: block;
+            transition: fill 0.2s, stroke 0.2s;
+        }
+
+        .send-button {
+            width: 27px;
+            height: 27px;
+            background: transparent;
+            border: none;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: opacity 0.2s;
+            padding: 0;
+        }
+
+        .send-button.show {
+            display: flex;
+        }
+
+        .send-button:hover {
+            opacity: 0.8;
+        }
+
+        .send-button:active svg path {
+            fill: #5EA7DE;
+        }
+
+        .send-icon {
+            width: 21px;
+            height: 21px;
+            display: block;
+            transition: fill 0.2s;
+        }
+
+        .send-icon path {
+            fill: #5EA7DE;
+        }
+
+        .navigation-bar {
+            position: absolute;
+            bottom: 1px;
+            left: 0;
+            right: 0;
+            height: 14px;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gesture-line {
+            width: 91px;
+            height: 3.5px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .messages-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .messages-container::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .pinned-bar {
+            display: none;
+            height: 54px;
+            background: white;
+            border-bottom: 1px solid var(--tg-theme-section-separator-color, #d9d9d9);
+            padding: 0 11px;
+            position: relative;
+            z-index: 8;
+            display: none;
+            align-items: center;
+        }
+
+        .pinned-bar.visible {
+            display: flex;
+        }
+
+        .pinned-bar .pin-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            color: #5EA7DE;
+        }
+
+        .pinned-bar .pin-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #222;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            flex: 1;
+        }
+
+        .name-and-status {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 2px 0;
+        }
+
+        .name-and-status .name {
+            font-size: 1.45rem;
+            font-weight: 500;
+            color: #4b5563;
+            line-height: 1.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transform: translateY(4px);
+        }
+
+        .name-and-status .status {
+            font-size: 0.93rem;
+            font-weight: 500;
+            color: #707579;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: visible;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+            transform: translateY(1px);
+        }
+
+        .message-bubble.incoming:not(:has(.bubble-tail)) .bubble-content {
+            border-bottom-left-radius: 12px;
+        }
+
+        /* اگر پیام outgoing باشد و bubble-tail نداشته باشد، همه گوشه‌ها گرد شوند */
+        .message-bubble.outgoing:not(:has(.bubble-tail)) .bubble-content {
+            border-bottom-right-radius: 12px;
+        }
+
+        .input-field {
+            margin-right: -10px !important;
+        }
+
+        /* === Input Panel به‌روزشده === */
+        .input-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            z-index: 100000000000000;
+            display: flex;
+            align-items: flex-end; /* ← مهم: دکمه‌ها در پایین باشند */
+            padding: 6px 12px;
+            box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+            min-height: 50px; /* کمترین ارتفاع */
+            max-height: min(180px, 60vh); /* حداکثر ۶ خط ≈ 180px */
+            overflow: hidden;
+        }
+
+        /* textarea انعطاف‌پذیر */
+        .input-field {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 8px 18px;
+            font-size: 15px;
+            line-height: 20px;
+            background: transparent;
+            font-family: 'Vazirmatn', inherit;
+            color: #000;
+            resize: none;
+            max-height: 180px; /* 6 خط */
+            min-height: 28px;
+            overflow-y: auto;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            align-self: flex-end;
+        }
+
+        .input-field::placeholder {
+            color: #8E959B;
+        }
+
+        /* پنل اکشن‌ها رو در پایین نگه می‌داره */
+        .input-actions {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            margin-bottom: 2px; /* برای هماهنگی با padding textarea */
+            flex-shrink: 0;
+        }
+
+        .action-button,
+        .send-button {
+            width: 27px;
+            height: 27px;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            padding: 0;
+        }
+
+        .send-button {
+            display: none;
+        }
+
+        .send-button.show {
+            display: flex;
+        }
+
+        #mic-button:not(.hidden) {
+            display: flex;
+        }
+        #mic-button.hidden {
+            display: none;
+        }
+
+        /* SVG جدید برای دکمه ارسال */
+        .send-icon-new {
+            width: 20px;
+            height: 20px;
+            display: block;
+        }
+
+        @media (max-width: 640px) {
+            .phone-container > .z-20 .relative.flex-shrink-0.min-w-\[120px\] {
+                display: none !important;
+            }
+            .pinned-bar {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .messages-container.has-pinned {
+                top: 113px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <!-- original header -->
+        <div class="z-20 flex items-center w-full px-1 bg-white border-b">
+            <button class="flex self-center p-2 mr-2 text-gray-500 rounded-full focus:outline-none hover:text-gray-600 hover:bg-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-6 h-6">
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                </svg>
+            </button>
+            <div class="w-12 h-12 mx-0 my-2 bg-blue-500 bg-center bg-no-repeat bg-cover rounded-full cursor-pointer"></div>
+            <div class="flex items-center flex-1 ml-3 cursor-pointer">
+                <div class="name-and-status">
+                    <div class="name">Karen</div>
+                    <div class="status">Online</div>
+                </div>
+            </div>
+            <div class="relative flex-shrink-0 min-w-[120px] pl-4 my-3 border-l-2 border-blue-500 cursor-pointer mr-3">
+                <div class="text-base font-medium text-blue-500 truncate">Pinned message</div>
+                <div class="text-sm font-normal text-gray-800 truncate">Today star contest</div>
+            </div>
+            <div class="flex items-center ml-auto space-x-2">
+                <button class="flex self-center p-2 text-gray-500 rounded-full focus:outline-none hover:text-gray-600 hover:bg-gray-300">
+                    <svg class="w-6 h-6 text-gray-600 fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill-rule="nonzero" d="M11,20 L13,20 C13.5522847,20 14,20.4477153 14,21 C14,21.5128358 13.6139598,21.9355072 13.1166211,21.9932723 L13,22 L11,22 C10.4477153,22 10,21.5522847 10,21 C10,20.4871642 10.3860402,20.0644928 10.8833789,20.0067277 L11,20 L13,20 L11,20 Z M3.30352462,2.28241931 C3.6693482,1.92735525 4.23692991,1.908094 4.62462533,2.21893936 L4.71758069,2.30352462 L21.2175807,19.3035246 C21.6022334,19.6998335 21.5927842,20.332928 21.1964754,20.7175807 C20.8306518,21.0726447 20.2630701,21.091906 19.8753747,20.7810606 L19.7824193,20.6964754 L18.127874,18.9919007 L18,18.9999993 L4,18.9999993 C3.23933773,18.9999993 2.77101468,18.1926118 3.11084891,17.5416503 L3.16794971,17.4452998 L5,14.6972244 L5,8.9999993 C5,7.98873702 5.21529462,7.00715088 5.62359521,6.10821117 L3.28241931,3.69647538 C2.89776658,3.3001665 2.90721575,2.66707204 3.30352462,2.28241931 Z M7.00817933,8.71121787 L7,9 L7,14.6972244 C7,15.0356672 6.91413188,15.3676193 6.75167088,15.6624466 L6.66410059,15.8066248 L5.86851709,17 L16.1953186,17 L7.16961011,7.7028948 C7.08210009,8.02986218 7.02771758,8.36725335 7.00817933,8.71121787 Z M12,2 C15.7854517,2 18.8690987,5.00478338 18.995941,8.75935025 L19,9 L19,12 C19,12.5522847 18.5522847,13 18,13 C17.4871642,13 17.0644928,12.6139598 17.0067277,12.1166211 L17,12 L17,9 C17,6.23857625 14.7614237,4 12,4 C11.3902636,4 10.7970241,4.10872043 10.239851,4.31831953 C9.72293204,4.51277572 9.14624852,4.25136798 8.95179232,3.734449 C8.75733613,3.21753002 9.01874387,2.6408465 9.53566285,2.4463903 C10.3171048,2.15242503 11.1488212,2 12,2 Z"/>
+                    </svg>
+                </button>
+                <button class="flex self-center p-2 text-gray-500 rounded-full focus:outline-none hover:text-gray-600 hover:bg-gray-300">
+                    <svg class="w-6 h-6 text-gray-600 fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill-rule="nonzero" d="M9.5,3 C13.0898509,3 16,5.91014913 16,9.5 C16,10.9337106 15.5358211,12.2590065 14.7495478,13.3338028 L19.7071068,18.2928932 C20.0976311,18.6834175 20.0976311,19.3165825 19.7071068,19.7071068 C19.3466228,20.0675907 18.7793918,20.0953203 18.3871006,19.7902954 L18.2928932,19.7071068 L13.3338028,14.7495478 C12.2590065,15.5358211 10.9337106,16 9.5,16 C5.91014913,16 3,13.0898509 3,9.5 C3,5.91014913 5.91014913,3 9.5,3 Z M9.5,5 C7.01471863,5 5,7.01471863 5,9.5 C5,11.9852814 7.01471863,14 9.5,14 C11.9852814,14 14,11.9852814 14,9.5 C14,7.01471863 11.9852814,5 9.5,5 Z"/>
+                    </svg>
+                </button>
+                <button type="button" class="flex self-center p-2 text-gray-500 rounded-full focus:outline-none hover:text-gray-600 hover:bg-gray-300">
+                    <svg class="w-6 h-6 text-gray-600 fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill-rule="nonzero" d="M12,16 C13.1045695,16 14,16.8954305 14,18 C14,19.1045695 13.1045695,20 12,20 C10.8954305,20 10,19.1045695 10,18 C10,16.8954305 10.8954305,16 12,16 Z M12,10 C13.1045695,10 14,10.8954305 14,12 C14,13.1045695 13.1045695,14 12,14 C10.8954305,14 10,13.1045695 10,12 C10,10.8954305 10.8954305,10 12,10 Z M12,4 C13.1045695,4 14,4.8954305 14,6 C14,7.1045695 13.1045695,8 12,8 C10.8954305,8 10,7.1045695 10,6 C10,4.8954305 10.8954305,4 12,4 Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="pinned-bar" id="pinned-bar">
+            <div class="relative flex-shrink-0 min-w-[120px] pl-4 my-3 border-l-2 border-blue-500 cursor-pointer mr-3">
+                <div class="text-base font-medium text-blue-500 truncate">Pinned message</div>
+                <div class="text-sm font-normal text-gray-800 truncate">Today star contest</div>
+            </div>
+        </div>
+
+        <div class="messages-container has-pinned" id="messages-container">
+            <div class="messages-wrapper" id="comments-wrapper">
+                <div class="date-divider">
+                    <div class="date-badge-modern">امروز</div>
+                </div>
+                <div class="message-spacing-8"></div>
+                <div class="message-bubble incoming">
+                    <div class="bubble-content">
+                        <div class="message-author-name">سیدعلی</div>
+                        <div class="message-text-wrapper" id="msg-text-1">
+                            <span class="message-text" id="msg-text-content-1">سلام</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-1">
+                                <span class="message-time">05:23 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+
+                <div class="message-bubble incoming">
+                    <div class="avatar-container">
+                        <div class="avatar-bubble"></div>
+                    </div>
+                    <div class="bubble-tail">
+                        <svg width="6" height="51" viewBox="0 0 6 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <path d="M6 41C6 44.2143 4.23529 48.6786 0.705882 49.5714C0.705882 49.5714 0 49.5714 0 50.2857C0 51 0.705882 51 0.705882 51L6 51V41Z" fill="white"></path>
+                        </svg>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="message-author-name">سیدعلی</div>
+                        <div class="message-text-wrapper" id="msg-text-2">
+                            <span class="message-text" id="msg-text-content-2">خوبی</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-2">
+                                <span class="message-time">05:24 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-6"></div>
+                <div class="message-bubble incoming">
+                    <div class="bubble-content">
+                        <div class="message-author-name">کاربر ناشناس</div>
+                        <div class="message-text-wrapper" id="msg-text-3">
+                            <span class="message-text" id="msg-text-content-3">سلام خوبم تو چی</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-3">
+                                <span class="message-time">05:25 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+
+                <div class="message-bubble incoming">
+                    <div class="bubble-content">
+                        <div class="message-author-name">کاربر ناشناس</div>
+                        <div class="message-text-wrapper" id="msg-text-5">
+                            <span class="message-text" id="msg-text-content-5">خداروشکر</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-5">
+                                <span class="message-time">05:25 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+
+                <div class="message-bubble incoming">
+                    <div class="bubble-content">
+                        <div class="message-author-name">کاربر ناشناس</div>
+                        <div class="message-text-wrapper" id="msg-text-6">
+                            <span class="message-text" id="msg-text-content-6">سلام ممنونم</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-6">
+                                <span class="message-time">05:26 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+                <div class="message-bubble incoming">
+                    <div class="bubble-content">
+                        <div class="message-author-name">کاربر ناشناس</div>
+                        <div class="message-text-wrapper" id="msg-text-7">
+                            <span class="message-text" id="msg-text-content-7">سلام داییییی</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-7">
+                                <span class="message-time">05:26 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+
+                <div class="message-bubble incoming">
+                    <div class="bubble-content">
+                        <div class="message-author-name">کاربر ناشناس</div>
+                        <div class="message-text-wrapper" id="msg-text-8">
+                            <span class="message-text" id="msg-text-content-8">خوبی</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-8">
+                                <span class="message-time">05:27 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+                <div class="message-bubble incoming">
+                    <div class="avatar-container">
+                        <div class="avatar-bubble"></div>
+                    </div>
+                    <div class="bubble-tail">
+                        <svg width="6" height="51" viewBox="0 0 6 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <path d="M6 41C6 44.2143 4.23529 48.6786 0.705882 49.5714C0.705882 49.5714 0 49.5714 0 50.2857C0 51 0.705882 51 0.705882 51L6 51V41Z" fill="white"></path>
+                        </svg>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="message-author-name">کاربر ناشناس</div>
+                        <div class="message-text-wrapper" id="msg-text-9">
+                            <span class="message-text" id="msg-text-content-9">عیول</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-9">
+                                <span class="message-time">05:27 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-6"></div>
+                <div class="message-bubble incoming">
+                    <div class="avatar-container">
+                        <div class="avatar-bubble"></div>
+                    </div>
+                    <div class="bubble-tail">
+                        <svg width="6" height="51" viewBox="0 0 6 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <path d="M6 41C6 44.2143 4.23529 48.6786 0.705882 49.5714C0.705882 49.5714 0 49.5714 0 50.2857C0 51 0.705882 51 0.705882 51L6 51V41Z" fill="white"></path>
+                        </svg>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="message-author-name">کــــــــاظــــمــــی</div>
+                        <div class="message-text-wrapper" id="msg-text-13">
+                            <span class="message-text" id="msg-text-content-13">سلان</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-13">
+                                <span class="message-time">05:41 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-6"></div>
+                <div class="message-bubble outgoing">
+                    <div class="bubble-content">
+                        <div class="message-text-wrapper" id="msg-text-14">
+                            <span class="message-text" id="msg-text-content-14">سلام</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-14">
+                                <span class="message-time">05:44 PM</span>
+                                <svg class="read-icon" viewBox="0 0 18 9">
+                                    <path d="M0.750003 5.23154L3.70486 7.9894L11.4614 0.750003M16.6324 0.922369L8.87586 8.16177L7.95247 7.29993" stroke="#62AC55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+
+                <div class="message-bubble outgoing">
+                    <div class="bubble-content">
+                        <div class="message-text-wrapper" id="msg-text-15">
+                            <span class="message-text" id="msg-text-content-15">چه باحال</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-15">
+                                <span class="message-time">05:44 PM</span>
+                                <svg class="read-icon" viewBox="0 0 18 9">
+                                    <path d="M0.750003 5.23154L3.70486 7.9894L11.4614 0.750003M16.6324 0.922369L8.87586 8.16177L7.95247 7.29993" stroke="#62AC55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bubble-tail">
+                        <svg width="6" height="51" viewBox="0 0 6 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="transform: scaleX(-1);">
+                            <path d="M6 41C6 44.2143 4.23529 48.6786 0.705882 49.5714C0.705882 49.5714 0 49.5714 0 50.2857C0 51 0.705882 51 0.705882 51L6 51V41Z" fill="#effedd"></path>
+                        </svg>
+                    </div>
+                </div>
+               <div class="message-spacing-6"></div> 
+                <div class="message-bubble incoming">
+                    <div class="bubble-content">
+                        <div class="message-author-name">سیدعلی</div>
+                        <div class="message-text-wrapper" id="msg-text-16">
+                            <span class="message-text" id="msg-text-content-16">اره دایی</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-16">
+                                <span class="message-time">05:46 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+
+                <div class="message-bubble incoming">
+                    <div class="avatar-container">
+                        <div class="avatar-bubble"></div>
+                    </div>
+                    <div class="bubble-tail">
+                        <svg width="6" height="51" viewBox="0 0 6 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <path d="M6 41C6 44.2143 4.23529 48.6786 0.705882 49.5714C0.705882 49.5714 0 49.5714 0 50.2857C0 51 0.705882 51 0.705882 51L6 51V41Z" fill="white"></path>
+                        </svg>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="message-author-name">سیدعلی</div>
+                        <div class="message-text-wrapper" id="msg-text-18">
+                            <span class="message-text" id="msg-text-content-18">سلام</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-18">
+                                <span class="message-time">05:52 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-6"></div>
+                <div class="message-bubble incoming">
+                    <div class="avatar-container">
+                        <div class="avatar-bubble"></div>
+                    </div>
+                    <div class="bubble-tail">
+                        <svg width="6" height="51" viewBox="0 0 6 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <path d="M6 41C6 44.2143 4.23529 48.6786 0.705882 49.5714C0.705882 49.5714 0 49.5714 0 50.2857C0 51 0.705882 51 0.705882 51L6 51V41Z" fill="white"></path>
+                        </svg>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="message-author-name">Ali</div>
+                        <div class="message-text-wrapper message-text-multiline-wrapper" id="msg-text-23">
+                            <span class="message-text-multiline" id="msg-text-content-23">اسم و تعداد کامنت که بالاست بیاد وسط چین بشه اوکی میشه</span>
+                            <span class="message-meta message-meta-block" id="msg-meta-23" style="justify-content: flex-end;">
+                                <span class="message-time">06:09 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-6"></div>
+                <div class="message-bubble incoming">
+                    <div class="avatar-container">
+                        <div class="avatar-bubble"></div>
+                    </div>
+                    <div class="bubble-tail">
+                        <svg width="6" height="51" viewBox="0 0 6 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <path d="M6 41C6 44.2143 4.23529 48.6786 0.705882 49.5714C0.705882 49.5714 0 49.5714 0 50.2857C0 51 0.705882 51 0.705882 51L6 51V41Z" fill="white"></path>
+                        </svg>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="message-author-name">🅰🅳🅼🅸🅽</div>
+                        <div class="message-text-wrapper" id="msg-text-17">
+                            <span class="message-text" id="msg-text-content-17">سلام</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-17">
+                                <span class="message-time">05:50 PM</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+
+                <!-- outgoing آخر -->
+                <div class="message-bubble outgoing">
+                    <div class="bubble-content">
+                        <div class="message-text-multiline-wrapper" id="msg-text-78">
+                            <span class="message-text" id="msg-text-content-78">چت هربار که دوباره لود میشه میره میاد</span>
+                            <span class="message-meta message-meta-inline" id="msg-meta-78">
+                                <span class="message-time">08:09 PM</span>
+                                <svg class="read-icon" viewBox="0 0 18 9">
+                                    <path d="M0.750003 5.23154L3.70486 7.9894L11.4614 0.750003M16.6324 0.922369L8.87586 8.16177L7.95247 7.29993" stroke="#62AC55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bubble-tail">
+                        <svg width="6" height="51" viewBox="0 0 6 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="transform: scaleX(-1);">
+                            <path d="M6 41C6 44.2143 4.23529 48.6786 0.705882 49.5714C0.705882 49.5714 0 49.5714 0 50.2857C0 51 0.705882 51 0.705882 51L6 51V41Z" fill="#effedd"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="message-spacing-2"></div>
+            </div>
+        </div>
+
+        <!-- Scroll to Bottom Button -->
+        <button id="scroll-to-bottom"
+                class="btn-circle btn-corner z-depth-1 bubbles-corner-button bubbles-go-down rp"
+                style="
+                position: fixed;
+                bottom: 72px;
+                right: 16px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: white;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.2s ease;
+                z-index: 20;
+                ">
+            <div class="c-ripple" style="position: absolute; inset: 0; border-radius: 50%;"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="#707579" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14"></path>
+                <path d="m19 12-7 7-7-7"></path>
+            </svg>
+            <span class="badge badge-24 badge-primary" style="display: none;"></span>
+        </button>
+    </div>
+
+    <!-- Input Panel -->
+    <div class="input-panel">
+        <button class="action-button" id="emoji-button" onclick="toggleEmoji()" style="margin-right: 8px;">
+            <svg viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.16667 16.1667C9.55556 16.9444 10.9667 18.5 13.5 18.5C16.0333 18.5 17.4444 16.9444 17.8333 16.1667M24 13.5C24 19.299 19.299 24 13.5 24C7.70101 24 3 19.299 3 13.5C3 7.70101 7.70101 3 13.5 3C19.299 3 24 7.70101 24 13.5ZM17.5 11.6667C17.5 12.1269 17.2761 12.5 17 12.5C16.7239 12.5 16.5 12.1269 16.5 11.6667C16.5 11.2064 16.7239 10.8333 17 10.8333C17.2761 10.8333 17.5 11.2064 17.5 11.6667ZM10.5 11.6667C10.5 12.1269 10.2761 12.5 10 12.5C9.72386 12.5 9.5 12.1269 9.5 11.6667C9.5 11.2064 9.72386 10.8333 10 10.8333C10.2761 10.8333 10.5 11.2064 10.5 11.6667Z" stroke="#868686" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </button>
+        <textarea class="input-field" id="message-input" placeholder="پیام خود را بنویسید..." oninput="toggleInputActions()"></textarea>
+        <div class="input-actions">
+            <button class="send-button" id="send-button" style="display: none;">
+                <svg class="send-icon-new" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0084FF">
+                    <path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.41,22.99 3.50612381,23.1 4.13399899,22.8429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 C22.8132856,11.0605983 22.3423792,10.4322088 21.714504,10.118014 L4.13399899,1.16346272 C3.34915502,0.9 2.40734225,1.00636533 1.77946707,1.4776575 C0.994623095,2.10604706 0.8376543,3.0486314 1.15159189,3.99121575 L3.03521743,10.4322088 C3.03521743,10.5893061 3.34915502,10.7464035 3.50612381,10.7464035 L16.6915026,11.5318905 C16.6915026,11.5318905 17.1624089,11.5318905 17.1624089,12.0031827 C17.1624089,12.4744748 16.6915026,12.4744748 16.6915026,12.4744748 Z" fill-rule="evenodd" stroke="none" fill="#0084FF"/>
+                </svg>
+            </button>
+            <button class="action-button" id="attach-button" onclick="toggleAttach()">
+                <svg viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.2782 11.8065L12.9998 4.98249C19.0116 -1.02903 28.0292 7.98825 22.0174 13.9998L13.3335 22.6783C9.32562 26.686 3.31388 20.6745 7.32171 16.6668L16.0057 7.98825C17.9947 6.04839 20.9973 9.09678 19.3452 10.994L11.0383 19.4274" stroke="#868686" stroke-width="1.5" stroke-linecap="round"></path>
+                </svg>
+            </button>
+            <button class="action-button" id="mic-button" onclick="toggleMic()">
+                <svg viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.686 21.2982V22.8421C14.686 23.4816 14.155 24 13.5 24C12.845 24 12.314 23.4816 12.314 22.8421V21.2982V21.2181C8.18098 20.6548 5 17.1901 5 13C5 12.7105 5.1779 12.1316 5.88953 12.1316C6.60116 12.1316 6.77907 12.7105 6.77907 13C6.77907 16.6238 9.78814 19.5614 13.5 19.5614C14.7152 19.5614 15.855 19.2466 16.8387 18.6959C18.0091 18.0406 18.9583 17.0514 19.5499 15.8614C19.9798 14.9966 20.2209 14.0258 20.2209 13C20.2209 12.7105 20.3988 12.1316 21.1105 12.1316C21.8221 12.1316 22 12.7105 22 13C22 14.5099 21.5869 15.9256 20.8651 17.1453C20.1011 18.4362 18.9913 19.5076 17.6593 20.2386C16.7573 20.7336 15.7534 21.0726 14.686 21.2181L14.686 21.2982Z" fill="#868686"></path>
+                    <path d="M13.5 2C15.7926 2 17.6512 3.81443 17.6512 6.05263V13.4881C17.5716 15.658 15.7447 17.3932 13.5027 17.3932C11.2101 17.3932 9.35154 15.5787 9.35154 13.3405V5.90508C9.43108 3.73522 11.258 2 13.5 2Z" fill="#868686"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+    function toggleInputActions() {
+        const input = document.getElementById('message-input');
+        const sendBtn = document.getElementById('send-button');
+        const micBtn = document.getElementById('mic-button');
+
+        if (input.value.trim() !== '') {
+            sendBtn.style.display = 'flex';
+            micBtn.style.display = 'none';
+        } else {
+            sendBtn.style.display = 'none';
+            micBtn.style.display = 'flex';
+        }
+
+        input.style.height = 'auto';
+        const newHeight = Math.min(input.scrollHeight, 150); // 6 خط
+        input.style.height = newHeight + 'px';
+    }
+
+    // اطمینان از اجرا در هنگام بارگذاری
+    document.getElementById('message-input').addEventListener('input', toggleInputActions);
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const messages = document.getElementById('messages-container');
+        const btn = document.getElementById('scroll-to-bottom');
+        if (!messages || !btn) return;
+        const updateVisibility = () => {
+          const { scrollTop, scrollHeight, clientHeight } = messages;
+          const isNearBottom = scrollHeight - scrollTop - clientHeight < 30;
+          const hasScroll = scrollHeight > clientHeight;
+          if (hasScroll && !isNearBottom) {
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+          } else {
+            btn.style.opacity = '0';
+            btn.style.pointerEvents = 'none';
+          }
+        };
+        messages.addEventListener('scroll', updateVisibility);
+        btn.addEventListener('click', () => {
+          messages.scrollTo({
+            top: messages.scrollHeight,
+            behavior: 'smooth'
+          });
+        });
+        setTimeout(updateVisibility, 200);
+      });
+    </script>
+</body>
+</html>
